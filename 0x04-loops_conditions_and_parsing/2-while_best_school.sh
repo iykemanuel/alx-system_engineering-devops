@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 #Displays "Best School" 10 times to stdout
 
-for _ in {1..10}
+index=0
+while [ $index -lt 10 ]
 do
 	echo "Best School"
+	((index++))
 done
