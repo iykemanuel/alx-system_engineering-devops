@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-# cutting some fields
-for i in *; do echo "$i" | cut -d "-" -f2; done
