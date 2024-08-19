@@ -1,18 +1,6 @@
-# Ensure the directory exists
-file { '/var/www/html/wp-includes':
-  ensure => directory,
-}
-
-# Ensure the file exists with the correct source path
-file { '/var/www/html/wp-includes/class-wp-locale.php':
-  ensure => file,
-  source => '/var/www/html/wp-includes/class-wp-locale.php',
-}
-
-# Exec resource to fix WordPress
+# Fixes a faulty wordpress site
 exec { 'fix-wordpress':
-  command => '/bin/true',
-  onlyif  => '/usr/bin/test -f /var/www/html/wp-includes/class-wp-locale.php',
-  path    => ['/usr/bin', '/bin'],
+  command => 'bash -c "sed -i s/class-wp-locale.phpp/class-wp-locale.php/ \
+/var/www/html/wp-settings.php; service apache2 restart"',
+  path    => '/usr/bin:/usr/sbin:/bin'
 }
-
